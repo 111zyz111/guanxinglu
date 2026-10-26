@@ -1,0 +1,39 @@
+# 依赖
+/node_modules
+/.pnp
+.pnp.js
+
+# 构建产物
+/.next
+/out
+/build
+next-env.d.ts
+*.tsbuildinfo
+
+# 环境变量（绝不提交）
+.env
+.env.*
+!.env.example
+
+# 日志
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# 测试与覆盖率
+/coverage
+.vitest
+
+# 调研期临时产物：克隆的参考仓库、验证脚本、浏览器截图（体积大，不进仓库）
+# 其中可复用的六十四卦生成脚本已移入 tools/
+_verify/
