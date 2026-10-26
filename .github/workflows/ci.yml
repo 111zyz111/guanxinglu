@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    name: 类型检查与算法测试
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 类型检查
+        run: npm run typecheck
+
+      - name: 算法测试
+        run: npm test
+
+      # 构建单独跑一次，确保 App Router 的路由与类型在干净环境也能生成
+      - name: 生产构建
+        run: npm run build
+        env:
+          # 构建期不需要真实密钥；缺失时 AI 功能自动降级
+          AI_API_KEY: ""
